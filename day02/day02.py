@@ -2,10 +2,9 @@
 
 import sys
 
-lines = [line for line in sys.stdin]
 valid1 = 0
 valid2 = 0
-for line in lines:
+for line in sys.stdin:
   parts = line.split(' ')
   assert len(parts) == 3
   x, y = map(int, parts[0].split('-'))
