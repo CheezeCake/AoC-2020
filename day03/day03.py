@@ -3,13 +3,12 @@
 import sys
 
 def trees_on_slope(grid, right, down):
-  x, y = right, down
+  x = right
   trees = 0
-  while y < len(grid):
+  for y in range(down, len(grid), down):
     if grid[y][x % len(grid[0])] == '#':
       trees += 1
     x += right
-    y += down
   return trees
 
 grid = [list(line.strip()) for line in sys.stdin]
