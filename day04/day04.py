@@ -4,11 +4,9 @@ import re
 import sys
 
 def valid_height(h):
-  if h.endswith('cm'):
-    return h[:-2].isnumeric() and 150 <= int(h[:-2]) <= 193
-  if h.endswith('in'):
-    return h[:-2].isnumeric() and 59 <= int(h[:-2]) <= 76
-  return False
+  valid_range = {'cm': (150, 193), 'in': (59, 76)}
+  m = re.match('^(\d+)(cm|in)$', h)
+  return m and valid_range[m.group(2)][0] <= int(m.group(1)) <= valid_range[m.group(2)][1]
 
 def valid_passport(p):
   valid = {
