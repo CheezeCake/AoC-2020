@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import re
 import sys
 
 def valid_height(h):
@@ -15,10 +16,10 @@ def valid_passport(p):
     'iyr': lambda iyr: 2010 <= int(iyr) <= 2020,
     'eyr': lambda eyr: 2020 <= int(eyr) <= 2030,
     'hgt': valid_height,
-    'hcl': lambda hcl: len(hcl) == 7 and hcl[0] == '#' and all(c in '0123456789abcdef' for c in hcl[1:]),
-    'ecl': lambda ecl: ecl in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'],
-    'pid': lambda pid: len(p['pid']) == 9 and p['pid'].isnumeric(),
-    'cid': lambda cid: True,
+    'hcl': lambda hcl: re.match('^#[0-9a-f]{6}$', hcl),
+    'ecl': lambda ecl: ecl in {'amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'},
+    'pid': lambda pid: re.match('^\d{9}$', pid),
+    'cid': lambda _: True,
   }
   return all(valid[k](v) for k, v in p.items())
 
