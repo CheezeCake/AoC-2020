@@ -12,7 +12,7 @@ def valid_height(h):
 def valid_passport(p):
   valid = {
     'byr': lambda byr: 1920 <= int(byr) <= 2002,
-    'iyr': lambda byr: 2010 <= int(byr) <= 2020,
+    'iyr': lambda iyr: 2010 <= int(iyr) <= 2020,
     'eyr': lambda eyr: 2020 <= int(eyr) <= 2030,
     'hgt': valid_height,
     'hcl': lambda hcl: len(hcl) == 7 and hcl[0] == '#' and all(c in '0123456789abcdef' for c in hcl[1:]),
