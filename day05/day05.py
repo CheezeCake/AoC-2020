@@ -4,8 +4,7 @@ import sys
 
 seat_ids = [int(bp.strip().translate(str.maketrans('FBLR', '0101')), 2) for bp in sys.stdin]
 
-max_seat_id = max(seat_ids)
-print('part 1:', max_seat_id)
+print('part 1:', max(seat_ids))
 
 for n in seat_ids:
   n = abs(n)
