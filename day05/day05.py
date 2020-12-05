@@ -13,4 +13,4 @@ for n in seat_ids:
 for i in range(8, len(seat_ids)):
   if seat_ids[i] > 0:
     print('part 2:', i)
-    sys.exit()
+    break
