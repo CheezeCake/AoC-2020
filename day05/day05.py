@@ -19,14 +19,16 @@ def decode_column(bp):
   return decode(bp[-3:], 7, 'L')
 
 
-seat_ids = {decode_row(bp.strip()) * 8 + decode_column(bp.strip()) for bp in sys.stdin}
+seat_ids = [decode_row(bp.strip()) * 8 + decode_column(bp.strip()) for bp in sys.stdin]
 
 max_seat_id = max(seat_ids)
 print('part 1:', max_seat_id)
 
-for row in range(1, max_seat_id // 8):
-  for col in range(8):
-    seat_id = row * 8 + col
-    if seat_id not in seat_ids:
-      print('part 2:', seat_id)
-      sys.exit()
+for n in seat_ids:
+  n = abs(n)
+  if n < len(seat_ids) and seat_ids[n] >= 0:
+    seat_ids[n] = -seat_ids[n]
+for i in range(8, len(seat_ids)):
+  if seat_ids[i] > 0:
+    print('part 2:', i)
+    sys.exit()
