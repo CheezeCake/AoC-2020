@@ -21,17 +21,7 @@ def valid_passport(p):
   }
   return all(valid[k](v) for k, v in p.items())
 
-passports = []
-passport = {}
-for line in sys.stdin:
-  if len(line) <= 1:
-    passports.append(passport)
-    passport = {}
-    continue
-  for field in line.strip().split(' '):
-    name, value = field.split(':')
-    passport[name] = value
-passports.append(passport)
+passports = [{k: v for k, v in (field.split(':') for field in p.strip().replace('\n', ' ').split(' '))} for p in sys.stdin.read().split('\n\n')]
 
 have_all_fields = [p for p in passports if len(p) == 8 or (len(p) == 7 and 'cid' not in p)]
 print('part 1:', len(have_all_fields))
