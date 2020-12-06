@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-from collections import Counter
+from functools import reduce
+import operator
 
-group_answers = [answers.strip().split("\n") for answers in sys.stdin.read().split("\n\n")]
-print('part 1:', sum(len(set(''.join(answers))) for answers in group_answers))
-print('part 2:', sum(n == len(answers) for answers in group_answers for n in Counter(''.join(answers)).values()))
+group_answers = [[set(answer) for answer in answers.strip().split("\n")] for answers in sys.stdin.read().split("\n\n")]
+print('part 1:', sum(len(reduce(operator.or_, answers)) for answers in group_answers))
+print('part 2:', sum(len(reduce(operator.and_, answers)) for answers in group_answers))
