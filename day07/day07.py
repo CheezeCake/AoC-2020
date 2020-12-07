@@ -10,7 +10,7 @@ def can_contain(bag, target, bags, mem={}):
     mem[bag] = True
     return True
   for contained in bags[bag].keys():
-    if can_contain(contained, target, bags):
+    if can_contain(contained, target, bags, mem):
       mem[bag] = True
       return True
   mem[bag] = False
@@ -19,7 +19,7 @@ def can_contain(bag, target, bags, mem={}):
 def count(bag, bags, mem={}):
   if bag in mem:
     return mem[bag]
-  mem[bag] = sum(n + n * count(contained, bags) for contained, n in bags[bag].items())
+  mem[bag] = sum(n + n * count(contained, bags, mem) for contained, n in bags[bag].items())
   return mem[bag]
 
 bags = {}
