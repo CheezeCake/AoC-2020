@@ -28,7 +28,7 @@ for line in sys.stdin:
   bag_color = m.group(1)
   bag_content = {}
   for contained in m.group(2).split(', '):
-    m = re.match('(\d) (.+) bags?', contained)
+    m = re.match('(\d+) (.+) bags?', contained)
     if m:
       bag_content[m.group(2)] = int(m.group(1))
   bags[bag_color] = bag_content
