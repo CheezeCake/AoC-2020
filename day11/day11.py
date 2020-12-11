@@ -22,8 +22,7 @@ def within_bounds(layout, i, j):
 DIRECTIONS = [(1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]
 
 def get_occupied_part1(layout, i, j):
-  adjacent = [layout[i + di][j + dj] for di, dj in DIRECTIONS if within_bounds(layout, i + di, j + dj)]
-  return sum(adj == '#' for adj in adjacent)
+  return sum(layout[i + di][j + dj] == '#' for di, dj in DIRECTIONS if within_bounds(layout, i + di, j + dj))
 
 def get_occupied_part2(layout, i, j):
   occupied = 0
