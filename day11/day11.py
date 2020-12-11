@@ -10,9 +10,9 @@ def round(layout, get_occupied, occupied_threshold):
       if layout[i][j] == '.':
         continue
       occupied = get_occupied(layout, i, j)
-      if occupied == 0:
+      if layout[i][j] == 'L' and occupied == 0:
         new_layout[i][j] = '#'
-      elif occupied >= occupied_threshold:
+      elif layout[i][j] == '#' and occupied >= occupied_threshold:
         new_layout[i][j] = 'L'
   return new_layout
 
