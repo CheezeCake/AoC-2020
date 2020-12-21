@@ -25,7 +25,7 @@ for line in sys.stdin:
   for ingredient in ingredients_set:
     ingredients_count[ingredient] += 1
 
-may_contain_allergen = reduce(operator.or_, (ingredients_set for ingredients_set in contains_allergen.values()))
+may_contain_allergen = reduce(operator.or_, contains_allergen.values())
 inert_ingredients = ingredients_count.keys() - may_contain_allergen
 print('part 1:', sum(ingredients_count[ingredient] for ingredient in inert_ingredients))
 
