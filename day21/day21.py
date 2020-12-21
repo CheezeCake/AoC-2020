@@ -29,13 +29,13 @@ may_contain_allergen = reduce(operator.or_, (ingredients_set for ingredients_set
 inert_ingredients = ingredients_count.keys() - may_contain_allergen
 print('part 1:', sum(ingredients_count[ingredient] for ingredient in inert_ingredients))
 
-determined = [allergen for allergen, ingredients in contains_allergen.items() if len(ingredients) == 1]
-while determined:
-  determined_allergen = determined.pop()
+allergens_found = [allergen for allergen, ingredients in contains_allergen.items() if len(ingredients) == 1]
+while allergens_found:
+  allergen_found = allergens_found.pop()
   for allergen in contains_allergen.keys():
     if len(contains_allergen[allergen]) == 1:
       continue
-    contains_allergen[allergen] -= contains_allergen[determined_allergen]
+    contains_allergen[allergen] -= contains_allergen[allergen_found]
     if len(contains_allergen[allergen]) == 1:
-      determined.append(allergen)
+      allergens_found.append(allergen)
 print('part 2:', ','.join(ingredient for _, ingredient in sorted((allergen, list(ingredients)[0]) for allergen, ingredients in contains_allergen.items())))
